@@ -108,6 +108,9 @@
           <div class="card-header">
             <h3 class="card-title">{{ t('finance.categorySpending.title') }}</h3>
           </div>
+          <div class="category-doughnut-wrap">
+            <canvas ref="doughnutCanvas" width="200" height="200" style="max-width:200px;flex-shrink:0"></canvas>
+          </div>
           <div class="category-list">
             <div v-for="category in categorySpending" :key="category.category" class="category-item">
               <div class="category-info">
@@ -172,12 +175,14 @@
 </template>
 
 <script>
-import { ref, onMounted, watch, computed } from 'vue'
+import { ref, onMounted, watch, computed, nextTick, onBeforeUnmount } from 'vue'
 import { api } from '../api'
 import { useFilters } from '../composables/useFilters'
 import { useI18n } from '../composables/useI18n'
 import { formatCurrency as formatCurrencyUtil } from '../utils/currency'
 import CostDetailModal from '../components/CostDetailModal.vue'
+import { Chart, ArcElement, DoughnutController, Tooltip, Legend } from 'chart.js'
+Chart.register(ArcElement, DoughnutController, Tooltip, Legend)
 
 export default {
   name: 'Spending',
@@ -186,6 +191,8 @@ export default {
   },
   setup() {
     const { t, currentCurrency } = useI18n()
+    const doughnutCanvas = ref(null)
+    let doughnutChart = null
     const loading = ref(true)
     const error = ref(null)
     const allMonthlySpending = ref([])
@@ -457,10 +464,45 @@ export default {
       showCostModal.value = true
     }
 
-    onMounted(loadData)
+    const buildDoughnut = () => {
+      if (!doughnutCanvas.value || !allCategorySpending.value.length) return
+      if (doughnutChart) doughnutChart.destroy()
+      const colors = ['#3b82f6', '#8b5cf6', '#10b981', '#f59e0b', '#ef4444', '#06b6d4']
+      doughnutChart = new Chart(doughnutCanvas.value, {
+        type: 'doughnut',
+        data: {
+          labels: allCategorySpending.value.map(c => c.category),
+          datasets: [{
+            data: allCategorySpending.value.map(c => c.amount),
+            backgroundColor: colors,
+            borderWidth: 2,
+            borderColor: '#fff'
+          }]
+        },
+        options: {
+          cutout: '65%',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: ctx => ` ${ctx.label}: $${Number(ctx.parsed).toLocaleString()}`
+              }
+            }
+          }
+        }
+      })
+    }
+
+    onMounted(async () => {
+      await loadData()
+      await nextTick()
+      buildDoughnut()
+    })
+    onBeforeUnmount(() => { if (doughnutChart) doughnutChart.destroy() })
 
     return {
       t,
+      doughnutCanvas,
       loading,
       error,
       summary,
@@ -696,6 +738,12 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
   gap: 1.75rem;
+}
+
+.category-doughnut-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 0 0.5rem;
 }
 
 .category-list {

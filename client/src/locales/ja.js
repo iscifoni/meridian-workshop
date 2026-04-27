@@ -6,6 +6,8 @@ export default {
     orders: '注文',
     finance: '財務',
     demandForecast: '需要予測',
+    reports: 'レポート',
+    restocking: '補充',
     companyName: '触媒コンポーネンツ',
     subtitle: '在庫管理システム'
   },
@@ -57,6 +59,8 @@ export default {
       unitsShort: '単位不足',
       days: '日'
     },
+    createPO: '発注書作成',
+    viewPO: '発注書表示',
     topProducts: {
       title: '収益別トップ製品',
       sku: 'SKU',
@@ -135,6 +139,11 @@ export default {
     description: '収益、コスト、財務パフォーマンスの追跡',
     totalRevenue: '総収益',
     totalCosts: '総コスト',
+    costModal: {
+      costBreakdown: 'コスト内訳',
+      totalCosts: '総コスト',
+      ofTotal: '全体の'
+    },
     netProfit: '純利益',
     avgOrderValue: '平均注文額',
     fromOrders: '{count}件の注文から',
@@ -213,7 +222,8 @@ export default {
   trends: {
     increasing: '増加',
     stable: '安定',
-    decreasing: '減少'
+    decreasing: '減少',
+    unknown: '不明'
   },
 
   // Priority
@@ -311,6 +321,58 @@ export default {
     selectLanguage: '言語を選択'
   },
 
+  // Restocking
+  restocking: {
+    title: '補充推奨',
+    description: '在庫レベルと需要予測に基づく発注推奨',
+    budgetCeiling: '予算上限',
+    totalRecommendations: '推奨総数',
+    estimatedTotalCost: '推定総コスト',
+    itemsBelowReorder: '再注文点以下の品目',
+    budgetRemaining: '残予算',
+    noRecommendations: '補充不要です。すべての品目の在庫は十分です。',
+    table: {
+      sku: 'SKU',
+      itemName: '品目名',
+      onHand: '手持在庫',
+      reorderPoint: '再注文点',
+      recommendedQty: '推奨数量',
+      estimatedCost: '推定コスト',
+      demandTrend: '需要トレンド'
+    }
+  },
+
+  // Reports
+  reports: {
+    title: 'パフォーマンスレポート',
+    description: '四半期パフォーマンス指標と月次トレンドを表示',
+    quarterly: {
+      title: '四半期パフォーマンス',
+      quarter: '四半期',
+      totalOrders: '総注文数',
+      totalRevenue: '総収益',
+      avgOrderValue: '平均注文額',
+      fulfillmentRate: '履行率'
+    },
+    monthlyTrend: {
+      title: '月次収益トレンド'
+    },
+    monthOverMonth: {
+      title: '前月比分析',
+      month: '月',
+      orders: '注文数',
+      revenue: '収益',
+      change: '変化',
+      growthRate: '成長率'
+    },
+    summary: {
+      totalRevenueYTD: '総収益（年初来）',
+      avgMonthlyRevenue: '平均月次収益',
+      totalOrdersYTD: '総注文数（年初来）',
+      bestQuarter: '最高パフォーマンス四半期'
+    }
+  },
+
   // Common
   common: {
     loading: '読み込み中...',
@@ -323,7 +385,8 @@ export default {
     search: '検索',
     filter: 'フィルター',
     export: 'エクスポート',
-    items: '件'
+    items: '件',
+    resetFilters: 'フィルターをリセット'
   },
 
   // Product Names

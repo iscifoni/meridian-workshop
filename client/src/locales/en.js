@@ -6,6 +6,8 @@ export default {
     orders: 'Orders',
     finance: 'Finance',
     demandForecast: 'Demand Forecast',
+    reports: 'Reports',
+    restocking: 'Restocking',
     companyName: 'Catalyst Components',
     subtitle: 'Inventory Management System'
   },
@@ -57,6 +59,8 @@ export default {
       unitsShort: 'units short',
       days: 'days'
     },
+    createPO: 'Create PO',
+    viewPO: 'View PO',
     topProducts: {
       title: 'Top Products by Revenue',
       sku: 'SKU',
@@ -135,6 +139,11 @@ export default {
     description: 'Track revenue, costs, and financial performance',
     totalRevenue: 'Total Revenue',
     totalCosts: 'Total Costs',
+    costModal: {
+      costBreakdown: 'Cost Breakdown',
+      totalCosts: 'Total Costs',
+      ofTotal: 'of total'
+    },
     netProfit: 'Net Profit',
     avgOrderValue: 'Avg Order Value',
     fromOrders: 'From {count} orders',
@@ -213,7 +222,8 @@ export default {
   trends: {
     increasing: 'increasing',
     stable: 'stable',
-    decreasing: 'decreasing'
+    decreasing: 'decreasing',
+    unknown: 'unknown'
   },
 
   // Priority
@@ -311,6 +321,58 @@ export default {
     selectLanguage: 'Select Language'
   },
 
+  // Restocking
+  restocking: {
+    title: 'Restocking Recommendations',
+    description: 'Purchase recommendations based on stock levels and demand forecasts',
+    budgetCeiling: 'Budget Ceiling',
+    totalRecommendations: 'Total Recommendations',
+    estimatedTotalCost: 'Estimated Total Cost',
+    itemsBelowReorder: 'Items Below Reorder Point',
+    budgetRemaining: 'Budget Remaining',
+    noRecommendations: 'No restocking needed — all items are adequately stocked.',
+    table: {
+      sku: 'SKU',
+      itemName: 'Item Name',
+      onHand: 'On Hand',
+      reorderPoint: 'Reorder Point',
+      recommendedQty: 'Recommended Qty',
+      estimatedCost: 'Est. Cost',
+      demandTrend: 'Demand Trend'
+    }
+  },
+
+  // Reports
+  reports: {
+    title: 'Performance Reports',
+    description: 'View quarterly performance metrics and monthly trends',
+    quarterly: {
+      title: 'Quarterly Performance',
+      quarter: 'Quarter',
+      totalOrders: 'Total Orders',
+      totalRevenue: 'Total Revenue',
+      avgOrderValue: 'Avg Order Value',
+      fulfillmentRate: 'Fulfillment Rate'
+    },
+    monthlyTrend: {
+      title: 'Monthly Revenue Trend'
+    },
+    monthOverMonth: {
+      title: 'Month-over-Month Analysis',
+      month: 'Month',
+      orders: 'Orders',
+      revenue: 'Revenue',
+      change: 'Change',
+      growthRate: 'Growth Rate'
+    },
+    summary: {
+      totalRevenueYTD: 'Total Revenue (YTD)',
+      avgMonthlyRevenue: 'Avg Monthly Revenue',
+      totalOrdersYTD: 'Total Orders (YTD)',
+      bestQuarter: 'Best Performing Quarter'
+    }
+  },
+
   // Common
   common: {
     loading: 'Loading...',
@@ -323,6 +385,7 @@ export default {
     search: 'Search',
     filter: 'Filter',
     export: 'Export',
-    items: 'items'
+    items: 'items',
+    resetFilters: 'Reset all filters'
   }
 }
