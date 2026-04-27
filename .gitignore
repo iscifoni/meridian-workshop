@@ -52,3 +52,12 @@ logs/
 
 # Environment variables
 .env
+
+# Local server output files
+server_out.txt
+server_err.txt
+dark_out.txt
+dark_err.txt
+
+# Claude local settings
+.claude/settings.local.json
